@@ -93,7 +93,7 @@ function searchBooks() {
     let author = document.getElementById("authorInput").value;
     let minPrice = document.getElementById("minPriceInput").value;
     let maxPrice = document.getElementById("maxPriceInput").value;
-    let resultSearch = {
+    let result = {
         name: name,
         author: author,
         minPrice: minPrice,
@@ -101,30 +101,21 @@ function searchBooks() {
     }
     $.ajax({
         type: "GET",
-        url: "http://localhost:8080/books/search?" + encodeURIParams(resultSearch),
-        success: function (books) {
-            displaySearchBooks(books)
+        url: "http://localhost:8080/books/search/",
+        data: JSON.stringify(result),
+        success: function (book) {
+            let content = "";
+            for (let i = 0; i < book.length; i++) {
+                content += '<tr>\n' +
+                    '        <td>' + book[i].code + '</td>\n' +
+                    '        <td>' + book[i].name + '</td>\n' +
+                    '        <td>' + book[i].author + '</td>\n' +
+                    '        <td>' + book[i].price + '</td>\n' +
+                    '        <td><button type="submit" onclick="deleteBook(' + book[i].id + ')">DELETE</button></td>\n' +
+                    '        <td><button onclick="updateBook(' + book[i].id + ')">UPDATE</button></td>\n' +
+                    '    </tr>';
+                document.getElementById("content").innerHTML = content;
+            }
         }
     })
-}
-
-function encodeURIParams(data) {
-    return Object.keys(data).map(function (key) {
-        return encodeURIComponent(key) + "=" + encodeURIComponent(data[key]);
-    }).join("&");
-}
-
-function displaySearchBooks(book) {
-    let content = "";
-    for (let i = 0; i < book.length; i++) {
-        content += '<tr>\n' +
-            '        <td>' + book[i].code + '</td>\n' +
-            '        <td>' + book[i].name + '</td>\n' +
-            '        <td>' + book[i].author + '</td>\n' +
-            '        <td>' + book[i].price + '</td>\n' +
-            '        <td><button type="submit" onclick="deleteBook(' + book[i].id + ')">DELETE</button></td>\n' +
-            '        <td><button onclick="updateBook(' + book[i].id + ')">UPDATE</button></td>\n' +
-            '    </tr>';
-        document.getElementById("content").innerHTML = content;
-    }
 }
