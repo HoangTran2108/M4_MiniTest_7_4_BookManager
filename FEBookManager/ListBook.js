@@ -19,15 +19,19 @@ function listBook() {
             document.getElementById("content").innerHTML = content;
         }
     })
+}
+listBook()
+
+function getTotalPrice() {
     $.ajax({
         type: "GET",
         url: "http://localhost:8080/books/totalPrice",
-        success: function (totalPrice) {
+        success: function(totalPrice) {
             document.getElementById("totalPrice").innerHTML = totalPrice;
         }
     })
 }
-listBook()
+getTotalPrice();
 
 function addNewBook(){
     let code = document.getElementById("code").value;
