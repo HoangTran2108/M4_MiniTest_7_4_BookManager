@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Books list</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+<body>
+<form id="addBook">
+    <table>
+        <tr>
+            <td>Code:</td>
+            <td><input type="text" id="code" placeholder="Code"></td>
+        </tr>
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" id="name" placeholder="name"></td>
+        </tr>
+        <tr>
+            <td>Author:</td>
+            <td><input type="text" id="author" placeholder="Author"></td>
+        </tr>
+        <tr>
+            <td>Price:</td>
+            <td><input type="number" id="price" placeholder="price"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Add" onclick="addNewBook()"></td>
+        </tr>
+    </table>
+</form>
+
+
+<h1>Search Books</h1>
+<div>
+    <input type="text" id="nameInput" placeholder="name">
+    <input type="text" id="authorInput" placeholder="Author">
+    <input type="text" id="minPriceInput" placeholder="price min">
+    <input type="text" id="maxPriceInput" placeholder="price max">
+    <button onclick="searchBooks()">Search</button>
+</div>
+
+<table border="1">
+    <tr>
+        <td>Code</td>
+        <td>Name</td>
+        <td>Author</td>
+        <td>Price</td>
+        <td>Delete</td>
+        <td>Update</td>
+    </tr>
+    <tbody id="content"></tbody>
+</table>
+    <span>Total: <b id="totalPrice"></b></span>
+
+<script src="ListBook.js"></script>
+
+</body>
+</html>
